@@ -1,11 +1,16 @@
 from aqt import mw
-from aqt.utils import showWarning
+from aqt.utils import showWarning, tooltip
 from anki.hooks import addHook
 from anki.notes import Note
 from anki.utils import timestampID
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
+from .config import getUserOption
+
+def onMerge(browser):
+    mergeNids(browser.selectedNotes())
+    browser.search()
 
 def mergeNids(nids):
     if len(nids)!=2:
@@ -57,6 +62,6 @@ def mergeNotes(note1, note2):
 def setupMenu(browser):
     a = QAction("Merge notes", browser)
     a.setShortcut(QKeySequence("Ctrl+Alt+M"))
-    a.triggered.connect(lambda : mergeNids(browser.selectedNotes()))
+    a.triggered.connect(lambda : onMerge(browser))
     browser.form.menuEdit.addAction(a)
 addHook("browser.setupMenus", setupMenu)

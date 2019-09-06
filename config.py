@@ -29,7 +29,7 @@ def getUserOption(key = None, default = None):
     else:
         return default
 
-lastVersion = getUserOption(version)
+lastVersion = getUserOption("version")
 if lastVersion < version:
     newVersion()
     pass
