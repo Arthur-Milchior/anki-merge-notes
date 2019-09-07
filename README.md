@@ -28,7 +28,11 @@ A card of N may be suspended, etc... if the card fo the
 same type in N1 or N2 is suspended. Same thing occurs with flagged cards.
 
 ## Configuration
-None. Hire me if you want me to add more options.
+* Allow to delete the original note and cards when they are merged
+* Allow to treat the case where fields is identical specially. In this
+  case, values are not concatenated, but only one value is kept.
+
+Hire me if you want me to add more options.
 ## Version 2.0
 None
 
