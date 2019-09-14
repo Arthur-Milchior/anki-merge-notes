@@ -41,7 +41,7 @@ def mergeNotes(note1, note2):
         return
     note = Note(mw.col, id=note1.id)
     if not getUserOption("Delete original cards", True):
-        note.id = timestampID(mw.col.db, "note", note.id)
+        note.id = timestampID(mw.col.db, "notes", note.id)
 
     for i in range(len(note.fields)):
         field1 = note1.fields[i]
