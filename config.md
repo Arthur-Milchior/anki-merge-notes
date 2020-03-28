@@ -1,3 +1,4 @@
 The options are:
-* Delete original cards -- if True, the original cards are deleted.
-* When identical keep a single field -- if two merged cards have the same value in both field, don't concatenate those values.
+
+* Delete original cards: if True, the original cards are deleted.
+* When identical keep a single field: if two merged cards have the same value in both field, don't concatenate those values.
