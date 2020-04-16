@@ -9,17 +9,20 @@ from PyQt5.QtWidgets import *
 from .config import getUserOption
 from .consts import *
 
+
 def onMerge(browser):
     note = mergeNids(browser.selectedNotes())
     cards = note.cards()
     browser.search()
-    browser.model.selectedCards = {card.id:True for card in cards}
+    browser.model.selectedCards = {card.id: True for card in cards}
     #browser.model.focusedCard = cards[0].id
     browser.model.restoreSelection()
 
+
 def mergeNids(nids):
-    if len(nids)!=2:
-        showWarning(_("Please select exactly two notes to merge and not %s")% nids)
+    if len(nids) != 2:
+        showWarning(
+            _("Please select exactly two notes to merge and not %s") % nids)
         return
     nid1, nid2 = nids
     note1 = Note(mw.col, id=nid1)
@@ -30,6 +33,7 @@ def mergeNids(nids):
         showWarning(_("Please select notes of the same type to merge them"))
         return
     return mergeNotes(note1, note2)
+
 
 def mergeNotes(note1, note2):
     mw.checkpoint("Merge Notes")
@@ -78,12 +82,16 @@ def mergeNotes(note1, note2):
     tooltip(_("Notes merged"))
     return note
 
+
 def setupMenu(browser):
     a = QAction("Merge notes", browser)
     a.setShortcut(QKeySequence("Ctrl+Alt+M"))
-    a.triggered.connect(lambda : onMerge(browser))
+    a.triggered.connect(lambda: onMerge(browser))
     browser.form.menuEdit.addAction(a)
+
+
 addHook("browser.setupMenus", setupMenu)
+
 
 def timestampID(db, table, t=None):
     "Return a non-conflicting timestamp for table."
