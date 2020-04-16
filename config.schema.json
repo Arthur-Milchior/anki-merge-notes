@@ -15,7 +15,7 @@
     },
     "Keyboard shortcut": {
       "type": "string",
-      "default": "Ctrl+M",
+      "default": "Ctrl+Alt+M",
       "description": "Select notes in browser then press the shortcut to merge the selected notes."
     },
     "version": {
