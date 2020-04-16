@@ -88,7 +88,7 @@ def mergeNotes(note1, note2):
 
 def setupMenu(browser):
     a = QAction("Merge notes", browser)
-    a.setShortcut(QKeySequence("Ctrl+Alt+M"))
+    a.setShortcut(QKeySequence(getUserOption("Keyboard shortcut", "Ctrl+M")))
     a.triggered.connect(lambda: onMerge(browser))
     browser.form.menuEdit.addAction(a)
 

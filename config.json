@@ -1,4 +1,5 @@
 {"Delete original cards": false,
  "version":1,
- "When identical keep a single field": true
+ "When identical keep a single field": true,
+ "Keyboard shortcut": "Ctrl+M"
 }

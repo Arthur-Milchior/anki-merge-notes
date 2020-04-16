@@ -13,6 +13,11 @@
       "default": false,
       "description": "if True, the original cards are deleted."
     },
+    "Keyboard shortcut": {
+      "type": "string",
+      "default": "Ctrl+M",
+      "description": "Select notes in browser then press the shortcut to merge the selected notes."
+    },
     "version": {
       "type": "integer",
       "enum": [1],
