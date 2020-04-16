@@ -1,6 +1,7 @@
 {"Delete original cards": false,
  "version":1,
  "When identical keep a single field": true,
+ "Keyboard shortcut": "Ctrl+Alt+M",
  "Overwrite patterns": [],
  "Strong tags": [],
  "Weak tags": []

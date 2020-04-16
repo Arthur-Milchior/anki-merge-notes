@@ -13,6 +13,12 @@
       "default": false,
       "description": "if True, the original cards are deleted."
     },
+    "Keyboard shortcut": {
+      "type": "string",
+      "default": "Ctrl+Alt+M",
+      "description": "Select notes in browser then press the shortcut to merge the selected notes.",
+      "pattern": "^((([Cc][Tt][Rr][Ll]|[Aa][Ll][Tt]|[Ss][Hh][Ii][Ff][Tt])\\+){0,3}([a-zA-Z0-9]|F[1-9]|F1[0-2]))?$"
+    },
     "Overwrite patterns": {
       "type": "array",
       "items": {
@@ -36,7 +42,6 @@
       },
       "default": [],
       "description": "Notes with any of these tags will have all their fields be overwritten by non-empty fields in the other note. \"Overwrite patterns\" and \"Strong tags\" take precedence."
-    },
     "version": {
       "type": "integer",
       "enum": [1],
