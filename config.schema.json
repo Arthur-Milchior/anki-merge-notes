@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "Merge two notes into a single note",
+  "properties": {
+    "When identical keep a single field": {
+      "type": "boolean",
+      "default": true,
+      "description": "if two merged cards have the same value in both field, don't concatenate those values."
+    },
+    "Delete original cards": {
+      "type": "boolean",
+      "default": false,
+      "description": "if True, the original cards are deleted."
+    },
+    "Keyboard shortcut": {
+      "type": "string",
+      "default": "Ctrl+Alt+M",
+      "description": "Select notes in browser then press the shortcut to merge the selected notes."
+    },
+    "version": {
+      "type": "integer",
+      "enum": [1],
+      "default": 1
+    }
+  }
+}
