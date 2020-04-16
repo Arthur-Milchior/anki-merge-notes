@@ -11,6 +11,7 @@ from aqt.utils import showWarning, tooltip
 from .config import getUserOption
 from .consts import *
 
+import re
 
 def onMerge(browser):
     note = mergeNids(browser.selectedNotes())
@@ -34,6 +35,17 @@ def mergeNids(nids):
         return
     return mergeNotes(note1, note2)
 
+def maybeOverwriteField(patterns, i, note1, note2):
+    mw.dpatterns = patterns
+    for pattern in patterns:
+        if pattern.search(note1.fields[i]):
+            note1.fields[i] = note2.fields[i]
+            return True
+        elif pattern.search(note2.fields[i]):
+            note2.fields[i] = note1.fields[i]
+            return True
+    return False
+
 
 def mergeNotes(note1, note2):
     mw.checkpoint("Merge Notes")
@@ -47,8 +59,11 @@ def mergeNotes(note1, note2):
     if not getUserOption("Delete original cards", True):
         note.id = timestampID(mw.col.db, "notes", note.id)
 
+    overwrite_patterns = [ re.compile(p) for p in (getUserOption("Overwrite patterns", []) or []) ]
     for i in range(len(note.fields)):
-        if note1.fields[i] != note2.fields[i] or not getUserOption("When identical keep a single field", True):
+        if maybeOverwriteField(overwrite_patterns, i, note, note2):
+            continue
+        elif note1.fields[i] != note2.fields[i] or not getUserOption("When identical keep a single field", True):
             note.fields[i] += note2.fields[i]
     cards = [None] * len(model1['tmpls'])
 
