@@ -21,6 +21,14 @@
       "default": [],
       "description": "RegExp patterns that indicate a field will be replaced by the value from the other note. Be sure to escape special characters if you want to match them literally. For instance, if you want fields with the text \"[REPLACEME]\" to be overwritten, the configuration value would have to look like this: [\"\\\\[REPLACEME\\\\]\"]"
     },
+    "Weak tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [],
+      "description": "Notes with any of these tags will have all their fields be overwritten by non-empty fields in the other note. \"Overwrite patterns\" takes precedence."
+    },
     "version": {
       "type": "integer",
       "enum": [1],

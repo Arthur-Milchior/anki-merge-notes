@@ -46,6 +46,19 @@ def maybeOverwriteField(patterns, i, note1, note2):
             return True
     return False
 
+def maybeGetWeakNote(note1, note2):
+    weak_tags = getUserOption("Weak tags", [])
+    note1_score = 0
+    note2_score = 0
+    for weak_tag in weak_tags:
+        if weak_tag in note1.tags:
+            note1_score += 1
+        if weak_tag in note2.tags:
+            note2_score += 1
+    if note1_score == note2_score:
+        return None
+    else:
+        return note1 if note1_score > note2_score else note2
 
 def mergeNotes(note1, note2):
     mw.checkpoint("Merge Notes")
@@ -59,10 +72,16 @@ def mergeNotes(note1, note2):
     if not getUserOption("Delete original cards", True):
         note.id = timestampID(mw.col.db, "notes", note.id)
 
+    weak = maybeGetWeakNote(note1, note2)
+
     overwrite_patterns = [ re.compile(p) for p in (getUserOption("Overwrite patterns", []) or []) ]
     for i in range(len(note.fields)):
         if maybeOverwriteField(overwrite_patterns, i, note, note2):
             continue
+        elif note1 == weak:
+            note.fields[i] = note2.fields[i] if note2.fields[i] != "" else note1.fields[i]
+        elif note2 == weak:
+            note.fields[i] = note1.fields[i] if note1.fields[i] != "" else note2.fields[i]
         elif note1.fields[i] != note2.fields[i] or not getUserOption("When identical keep a single field", True):
             note.fields[i] += note2.fields[i]
     cards = [None] * len(model1['tmpls'])

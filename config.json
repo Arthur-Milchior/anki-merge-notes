@@ -1,5 +1,6 @@
 {"Delete original cards": false,
  "version":1,
  "When identical keep a single field": true,
- "Overwrite patterns": []
+ "Overwrite patterns": [],
+ "Weak tags": []
 }
