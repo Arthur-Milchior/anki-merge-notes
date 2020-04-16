@@ -2,5 +2,6 @@
  "version":1,
  "When identical keep a single field": true,
  "Overwrite patterns": [],
+ "Strong tags": [],
  "Weak tags": []
 }

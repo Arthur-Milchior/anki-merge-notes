@@ -46,19 +46,28 @@ def maybeOverwriteField(patterns, i, note1, note2):
             return True
     return False
 
-def maybeGetWeakNote(note1, note2):
-    weak_tags = getUserOption("Weak tags", [])
+
+def noteWithMoreOfTags(tags, note1, note2):
     note1_score = 0
     note2_score = 0
-    for weak_tag in weak_tags:
-        if weak_tag in note1.tags:
+    for tag in tags:
+        if tag in note1.tags:
             note1_score += 1
-        if weak_tag in note2.tags:
+        if tag in note2.tags:
             note2_score += 1
     if note1_score == note2_score:
         return None
     else:
         return note1 if note1_score > note2_score else note2
+
+def maybeGetWeakNote(note1, note2):
+    strong = noteWithMoreOfTags(getUserOption("Strong tags", []), note1, note2)
+    if strong:
+        return note2 if note1 == strong else note1
+    weak = noteWithMoreOfTags(getUserOption("Weak tags", []), note1, note2)
+    if weak:
+        return weak
+    return None
 
 def mergeNotes(note1, note2):
     mw.checkpoint("Merge Notes")
