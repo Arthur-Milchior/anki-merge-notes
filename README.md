@@ -1,19 +1,19 @@
 # Merging notes
 ## Rationale
 At one point, for some complex reason, I had related notes and I
-wanted to merge them. This did make sens because their was no filled
-filled in both notes, and no card type generated for both notes.
+wanted to merge them. This did make sense because there was no filled fields
+in both notes, and no card type generated for both notes.
 
-This add-on does just this. In the browser, you select two notes with
-the same note type, and it merges them.
+This add-on does just this. In the browser, you select two notes with the
+same note type, and it merges them.
 
 ## Description
-Let's say you want to merge notes N1 and N2. There is no way to states
-which one is N1 and which one is N2.
+Let's say you want to merge notes N1 and N2.
 
-If N1 and N2 have distinct tip, an error message is shown. Otherwise,
-both notes become a single notes N. Each fields of N is the
-concatenation of the same fields in N1 and N2.
+There is no way to state which one is N1 and which one is N2. If N1 and N2
+have distinct tip, an error message is shown. Otherwise, both notes become a
+single note N. Each fields of N is the concatenation of the same fields in N1
+and N2.
 
 For each card type CT, N has a card of type CT which is a copy of the
 card of type CT of N1 or of N2, the choice is made such that the card
@@ -31,6 +31,8 @@ same type in N1 or N2 is suspended. Same thing occurs with flagged cards.
 * Allow to delete the original note and cards when they are merged
 * Allow to treat the case where fields is identical specially. In this
   case, values are not concatenated, but only one value is kept.
+* Allow setting rules based on tags or field value to decide which
+  value to keep.
 
 Hire me if you want me to add more options.
 ## Version 2.0
@@ -44,6 +46,7 @@ Key         |Value
 ------------|-------------------------------------------------------------------
 Copyright   | Arthur Milchior <arthur@milchior.fr>
 Based on    | Anki code by Damien Elmes <anki@ichi2.net>
+Extended options| [lleaff](https://github.com/lleaff)
 License     | GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
 Source in   | https://github.com/Arthur-Milchior/anki-merge-notes
 Addon number| [1482505492](https://ankiweb.net/shared/info/1482505492)
