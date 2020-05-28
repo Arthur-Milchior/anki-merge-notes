@@ -78,7 +78,7 @@ def mergeNotes(note1, note2):
         showWarning(_("Please select notes of the same type to merge them"))
         return
     note = Note(mw.col, id=note1.id)
-    if not getUserOption("Delete original cards", True):
+    if not getUserOption("Delete original cards", False):
         note.id = timestampID(mw.col.db, "notes", note.id)
 
     weak = maybeGetWeakNote(note1, note2)
@@ -119,7 +119,7 @@ def mergeNotes(note1, note2):
     for card in cards:
         if card is None:
             continue
-        if not getUserOption("Delete original cards", True):
+        if not getUserOption("Delete original cards", False):
             card.id = timestampID(mw.col.db, "cards", card.id)
         card.nid = note.id
         card.flush()
