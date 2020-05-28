@@ -2,6 +2,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
+from anki.cards import Card
 from anki.hooks import addHook
 from anki.lang import _
 from anki.notes import Note
@@ -120,7 +121,8 @@ def mergeNotes(note1, note2):
         if card is None:
             continue
         if not getUserOption("Delete original cards", False):
-            card.id = timestampID(mw.col.db, "cards", card.id)
+            tmp_card = Card(mw.col)
+            card.id = tmp_card.id
         card.nid = note.id
         card.flush()
     note.flush()
