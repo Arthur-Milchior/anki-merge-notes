@@ -93,7 +93,7 @@ def mergeNotes(note1, note2):
             note.fields[i] = note1.fields[i] if note1.fields[i] != "" else note2.fields[i]
         elif note1.fields[i] != note2.fields[i] or not getUserOption("When identical keep a single field", True):
             note.fields[i] += note2.fields[i]
-    cards = [None] * len(model1['tmpls'])
+    cards = dict()
 
     # Choosing which card to keep
     cards_to_delete = []
@@ -101,7 +101,7 @@ def mergeNotes(note1, note2):
         cards[card1.ord] = card1
     for card2 in note2.cards():
         ord = card2.ord
-        card1 = cards[ord]
+        card1 = cards.get(ord)
         if card1 is None or card1.type == CARD_NEW or card1.ivl < card2.ivl or (card1.ivl == card2.ivl and card1.factor < card2.factor):
             cards[ord] = card2
             cards_to_delete.append(card1)
@@ -116,7 +116,7 @@ def mergeNotes(note1, note2):
         mw.col._remNotes([note2.id])
         mw.col.remCards([card.id for card in cards_to_delete if card is not None], notes=False)
 
-    for card in cards:
+    for card in cards.values():
         if card is None:
             continue
         if not getUserOption("Delete original cards", False):
