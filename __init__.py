@@ -11,6 +11,7 @@ from aqt.utils import showWarning, tooltip
 
 from .config import getUserOption
 from .consts import *
+from .utils import timestampID
 
 import re
 
@@ -139,13 +140,3 @@ def setupMenu(browser):
 
 
 addHook("browser.setupMenus", setupMenu)
-
-
-def timestampID(db, table, t=None):
-    "Return a non-conflicting timestamp for table."
-    # be careful not to create multiple objects without flushing them, or they
-    # may share an ID.
-    t = t or intTime(1000)
-    while db.scalar("select id from %s where id = ?" % table, t):
-        t += 1
-    return t
