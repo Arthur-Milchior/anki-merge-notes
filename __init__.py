@@ -113,7 +113,7 @@ def mergeNotes(note1, note2):
     note.addTag(f"merged merged_{note1.id} merged_{note2.id}")
 
     if getUserOption("Delete original cards", False):
-        mw.col.remNotes([note2.id])
+        mw.col._remNotes([note2.id])
         mw.col.remCards(cards_to_delete, notes=False)
 
     for card in cards:
