@@ -42,6 +42,7 @@
       },
       "default": [],
       "description": "Notes with any of these tags will have all their fields be overwritten by non-empty fields in the other note. \"Overwrite patterns\" and \"Strong tags\" take precedence."
+    },
     "version": {
       "type": "integer",
       "enum": [1],
