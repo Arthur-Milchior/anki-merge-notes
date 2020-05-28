@@ -104,9 +104,9 @@ def mergeNotes(note1, note2):
         card1 = cards[ord]
         if card1 is None or card1.type == CARD_NEW or card1.ivl < card2.ivl or (card1.ivl == card2.ivl and card1.factor < card2.factor):
             cards[ord] = card2
-            cards_to_delete.append(card1.id)
+            cards_to_delete.append(card1)
         else:
-            cards_to_delete.append(card2.id)
+            cards_to_delete.append(card2)
 
     # tags
     note.addTag(note2.stringTags())
@@ -114,7 +114,7 @@ def mergeNotes(note1, note2):
 
     if getUserOption("Delete original cards", False):
         mw.col._remNotes([note2.id])
-        mw.col.remCards(cards_to_delete, notes=False)
+        mw.col.remCards([card.id for card in cards_to_delete if card is not None], notes=False)
 
     for card in cards:
         if card is None:
